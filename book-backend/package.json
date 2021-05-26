@@ -1,0 +1,14 @@
+{
+  "name": "book-backend",
+  "version": "1.0.0",
+  "description": "An Express server to handle book information lookup",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Ben Life",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
