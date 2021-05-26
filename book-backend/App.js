@@ -8,11 +8,18 @@ app.get("/", (req, res) => {
 });
 
 app.get("/book", (req, res) => {
-  if (req.query.title) {
+  if (req.query.title in bookData) {
     const title = req.query.title;
-    res.json({ title: title, author: bookData[title] });
+    res.json({
+      status: { success: true, message: "Book found" },
+      query: req.query,
+      data: { title: title, author: bookData[title] },
+    });
   } else {
-    res.send("Book Lookup API: please pass arguments");
+    res.json({
+      status: { success: false, message: "Book not found" },
+      query: req.query,
+    });
   }
 });
 
