@@ -8,6 +8,7 @@ app.get("/", (req, res) => {
 });
 
 app.get("/book", (req, res) => {
+  console.log(req.query);
   if (req.query.title in bookData) {
     const title = req.query.title;
     res.json({
