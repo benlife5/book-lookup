@@ -1,6 +1,7 @@
 const express = require("express");
-const bookData = require("./books_simple.json");
+let bookData = require("./books_simple.json");
 const cors = require("cors");
+const fs = require("fs");
 const app = express();
 app.use(cors());
 const port = 8000;
@@ -10,6 +11,7 @@ app.get("/", (req, res) => {
 });
 
 app.get("/book", (req, res) => {
+  console.log(bookData);
   if (req.query.title in bookData) {
     const title = req.query.title;
     res.json({
@@ -33,6 +35,10 @@ app.post("/addBook", (req, res) => {
         status: { success: true, message: "Book added successfully" },
         query: req.query,
       });
+      fs.writeFile("./books_simple.json", JSON.stringify(bookData), (error) =>
+        console.log(error)
+      );
+      console.log(bookData);
     } else {
       res.json({
         status: { success: false, message: "Title already exists" },
