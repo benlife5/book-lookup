@@ -12,39 +12,33 @@ function BookLookup(props) {
   };
 
   return (
-    <Card className="mainCard">
-      <Card.Body>
-        <Card.Title>Author Lookup</Card.Title>
-        <Form onSubmit={submit}>
-          <Form.Group>
-            <Form.Label>Book Title</Form.Label>
-            <Form.Control
-              placeholder="Title"
-              value={title}
-              onChange={({ target: { value } }) => setTitle(value)}
-            ></Form.Control>
-          </Form.Group>
-          <Button variant="primary" type="submit">
-            Search
-          </Button>
-        </Form>
-        <br />
-        {bookInfo && bookInfo.status.success && (
-          <Card.Text>
-            Title: {bookInfo.data.title} <br /> Author: {bookInfo.data.author}
-          </Card.Text>
-        )}
-        {bookInfo && !bookInfo.status.success && (
-          <Card.Text>
-            Error: <br /> {bookInfo.status.message}
-          </Card.Text>
-        )}
-
-        <Button variant="primary" onClick={() => props.setView("add")}>
-          Switch to Add Book
+    <Card.Body>
+      <Card.Title>Author Lookup</Card.Title>
+      <Form onSubmit={submit}>
+        <Form.Group>
+          <Form.Label>Book Title</Form.Label>
+          <Form.Control
+            placeholder="Title"
+            value={title}
+            onChange={({ target: { value } }) => setTitle(value)}
+          ></Form.Control>
+        </Form.Group>
+        <Button variant="primary" type="submit">
+          Search
         </Button>
-      </Card.Body>
-    </Card>
+      </Form>
+      <br />
+      {bookInfo && bookInfo.status.success && (
+        <Card.Text>
+          Title: {bookInfo.data.title} <br /> Author: {bookInfo.data.author}
+        </Card.Text>
+      )}
+      {bookInfo && !bookInfo.status.success && (
+        <Card.Text>
+          Error: <br /> {bookInfo.status.message}
+        </Card.Text>
+      )}
+    </Card.Body>
   );
 }
 
