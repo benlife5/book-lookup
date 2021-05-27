@@ -2,7 +2,7 @@ import { Card, Form, Button } from "react-bootstrap";
 import { useState } from "react";
 import { searchByTitle } from "./BookUtils";
 
-function BookLookup(props) {
+function BookLookup() {
   const [title, setTitle] = useState("");
   const [bookInfo, setBookInfo] = useState();
 

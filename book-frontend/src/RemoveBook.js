@@ -1,20 +1,19 @@
 import { Card, Form, Button } from "react-bootstrap";
 import { useState } from "react";
-import { addBook } from "./BookUtils";
+import { removeBook } from "./BookUtils";
 
-function BookLookup() {
+function RemoveBook() {
   const [title, setTitle] = useState("");
-  const [author, setAuthor] = useState("");
   const [response, setResponse] = useState();
 
   const submit = (e) => {
     e.preventDefault();
-    addBook(title, author).then((data) => setResponse(data));
+    removeBook(title).then((data) => setResponse(data));
   };
 
   return (
     <Card.Body>
-      <Card.Title>Add a Book</Card.Title>
+      <Card.Title>Remove Book</Card.Title>
       <Form onSubmit={submit}>
         <Form.Group>
           <Form.Label>Book Title</Form.Label>
@@ -24,16 +23,8 @@ function BookLookup() {
             onChange={({ target: { value } }) => setTitle(value)}
           ></Form.Control>
         </Form.Group>
-        <Form.Group>
-          <Form.Label>Book Author</Form.Label>
-          <Form.Control
-            placeholder="Author"
-            value={author}
-            onChange={({ target: { value } }) => setAuthor(value)}
-          ></Form.Control>
-        </Form.Group>
         <Button variant="primary" type="submit">
-          Add Book
+          Remove
         </Button>
       </Form>
       <br />
@@ -51,4 +42,4 @@ function BookLookup() {
   );
 }
 
-export default BookLookup;
+export default RemoveBook;

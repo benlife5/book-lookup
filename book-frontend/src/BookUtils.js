@@ -16,7 +16,6 @@ const addBook = async (title, author) => {
     const data = await axios.post(
       "http://localhost:8000/addBook?title=" + title + "&&author=" + author
     );
-    console.log(data);
     return data.data;
   } catch (error) {
     console.log(error);
@@ -25,4 +24,17 @@ const addBook = async (title, author) => {
   }
 };
 
-export { searchByTitle, addBook };
+const removeBook = async (title, author) => {
+  try {
+    const data = await axios.delete(
+      "http://localhost:8000/removeBook?title=" + title
+    );
+    return data.data;
+  } catch (error) {
+    console.log(error);
+    alert("Server error");
+    return null;
+  }
+};
+
+export { searchByTitle, addBook, removeBook };

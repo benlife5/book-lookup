@@ -53,6 +53,33 @@ app.post("/addBook", (req, res) => {
   }
 });
 
+app.delete("/removeBook", (req, res) => {
+  console.log(req.query);
+  if (req.query.title) {
+    if (req.query.title in bookData) {
+      delete bookData[req.query.title];
+      res.json({
+        status: { success: true, message: "Book removed successfully" },
+        query: req.query,
+      });
+      fs.writeFile("./books_simple.json", JSON.stringify(bookData), (error) =>
+        console.log(error)
+      );
+      console.log(bookData);
+    } else {
+      res.json({
+        status: { success: false, message: "Title does not exists" },
+        query: req.query,
+      });
+    }
+  } else {
+    res.json({
+      status: { success: false, message: "Invalid request" },
+      query: req.query,
+    });
+  }
+});
+
 app.listen(port, () => {
   console.log(`Book-Lookup app listening at http://localhost:${port}`);
 });
